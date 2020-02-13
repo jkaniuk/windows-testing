@@ -7,6 +7,9 @@ set -o xtrace
 # When running in prow, the working directory is the root of the test-infra
 # repository.
 
+# Wait for kube-apiserver availability if needed, e.g. in case of GKE master node resize
+sleep ${INITIAL_DELAY:-0m}
+
 # Taint the Linux nodes to prevent the test workloads from landing on them.
 # TODO: remove this once the issue is resolved:
 # https://github.com/kubernetes/kubernetes/issues/69892
